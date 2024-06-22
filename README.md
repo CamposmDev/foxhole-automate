@@ -20,6 +20,7 @@ The source code is open and freely available for anyone to modify according to t
   - [Installing from Release](#installing-from-release)
   - [Contributing](#contributing)
   - [Future Plans](#future-plans)
+  - [Inspiration](#inspiration)
   - [License](#license)
 
 ## Usage
@@ -158,11 +159,13 @@ We welcome contributions to the Foxhole Tool project! To contribute, please foll
 7. **Create a Pull Request:**
    - Open a pull request to the main repository. Provide a detailed description of your changes and any additional context that might be needed for the maintainers to review your contribution.
 
-Please refrain from opening issues with requests for changing the keybindings. Instead, feel free to clone the repository, make your desired changes, build the tool, and enjoy using it hassle-free.
-
 ## Future Plans
 
 Future plans for the Foxhole Tool include transitioning it into a system tray application. This enhancement will allow the tool to run discreetly in the background, providing easy access to its functionalities while minimizing interference with gameplay.
+
+## Inspiration
+
+This project was inspired by [FoxholeTool](https://github.com/mmaenz/FoxholeTool).
 
 ## License
 
