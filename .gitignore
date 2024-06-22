@@ -1,0 +1,42 @@
+# VSCode
+.vscode/
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Byte-compiled / optimized Python files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE files
+.idea/
+.vscode/
+
+# Compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Backup files
+*~
+*.bak
+*.swp
