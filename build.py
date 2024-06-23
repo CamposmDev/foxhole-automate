@@ -5,10 +5,10 @@ import platform
 
 WIN = 'Windows'
 LINUX = 'Linux'
+PROG_NAME = 'foxhole-auto'
 BUILD_VERSION = '1.0.0'
-PROG_NAME = f'foxhole-auto'
 ENTRY_POINT = 'src/main.py'
-BUILD_OPTS = ['-F', f'--name={PROG_NAME}', ENTRY_POINT]
+BUILD_OPTS = ['--onedir', f'--name={PROG_NAME}', ENTRY_POINT]
 ZIP_NAME = f'{PROG_NAME}.zip'
 
 def compress_to_zip():
@@ -16,7 +16,7 @@ def compress_to_zip():
     try:
         print('Compressing to zip... ', end='')
         if platform.system() == WIN:
-            ZIP_WIN_CMD = ['Compress-Archive', f'dist/{PROG_NAME}.exe', ZIP_NAME]
+            ZIP_WIN_CMD = ['powershell.exe', 'Compress-Archive', f'dist/{PROG_NAME}', ZIP_NAME, '-Force']
             subprocess.run(ZIP_WIN_CMD, check=True)
         else:
             ZIP_LINUX_CMD = ['zip', '-r', '-j', ZIP_NAME, f'dist/{PROG_NAME}']
