@@ -5,13 +5,14 @@ import platform
 
 WIN = 'Windows'
 LINUX = 'Linux'
-PROG_NAME = 'foxhole-auto'
+BUILD_VERSION = '1.0.0'
+PROG_NAME = f'foxhole-auto'
 ENTRY_POINT = 'src/main.py'
 BUILD_OPTS = ['-F', f'--name={PROG_NAME}', ENTRY_POINT]
 ZIP_NAME = f'{PROG_NAME}.zip'
 
 def compress_to_zip():
-    ZIP_NAME = f'{PROG_NAME}-{platform.system().lower()}.zip'
+    ZIP_NAME = f'{PROG_NAME}-{BUILD_VERSION}-{platform.system().lower()}.zip'
     try:
         print('Compressing to zip... ', end='')
         if platform.system() == WIN:
@@ -25,7 +26,7 @@ def compress_to_zip():
         print('FAILED.')
 
 def compress_to_tar_gz():
-    TAR_GZ_NAME = f'{PROG_NAME}-{LINUX.lower()}.tar.gz'
+    TAR_GZ_NAME = f'{PROG_NAME}-{BUILD_VERSION}-{LINUX.lower()}.tar.gz'
     try:
         print('Compressing to tar.gz... ', end='')
         TAR_GZ_CMD = ['tar', '-czf', TAR_GZ_NAME, '-C', 'dist', f'{PROG_NAME}']
