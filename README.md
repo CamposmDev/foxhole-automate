@@ -132,7 +132,7 @@ We welcome contributions to the Foxhole Automate project! To contribute, please 
 2. **Clone the Forked Repository:**
    - Clone your forked repository to your local machine:
      ```bash
-     git clone https://github.com/CamposmDev/foxhole-tool.git
+     git clone https://github.com/CamposmDev/foxhole-automate.git
      ```
 
 3. **Create a New Branch:**
