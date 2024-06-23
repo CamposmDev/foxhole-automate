@@ -41,8 +41,9 @@ build-linux:
 	tar -czf $(TAR_FILE) -C dist $(PROG_NAME)
 
 build-win:
-	pyinstaller --onedir --name=$(PROG_NAME) $(ENTRY_POINT)
-	powershell.exe Compress-Archive -Path $(ZIP_FILE) -DestinationPath dist
+	pyinstaller --noconsole --onedir --name=$(PROG_NAME) $(ENTRY_POINT)
+	robocopy "assets" "dist\foxhole-auto\assets" foxhole.ico || exit 0
+	powershell.exe Compress-Archive -Path dist/$(PROG_NAME) -DestinationPath $(ZIP_FILE)
 
 clean:
 	rm -rf build dist
