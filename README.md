@@ -90,7 +90,15 @@ To build the program for development purposes, follow these steps:
    - Make sure you have Python3 installed on your system.
    - Install the required dependencies using pip:
      ```bash
-     pip install pynput
+     pip install pynput pystray
+     ```
+   - If you're using Linux, you may have to install python-tk to access tkinter.
+     ```bash
+     sudo apt install python-tk
+     ```
+   - You may also have to install this package.
+     ```bash
+     sudo apt install gir1.2-appindicator3-0.1
      ```
 
 2. **Run the Program:**
