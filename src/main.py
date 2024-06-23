@@ -13,7 +13,6 @@ def main():
 
 def terminate(code, frame):
 	global foxhole
-	print('Terminate')
 	if foxhole is not None:
 		foxhole.stop()
 
