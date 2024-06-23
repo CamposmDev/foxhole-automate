@@ -17,7 +17,7 @@ The source code is open and freely available for anyone to modify according to t
   - [Building the Program](#building-the-program)
     - [Development Build](#development-build)
     - [Production Build](#production-build)
-  - [Installation](#installation)
+  - [Installing from Release](#installing-from-release)
   - [Contributing](#contributing)
   - [Future Plans](#future-plans)
   - [Inspiration](#inspiration)
@@ -92,7 +92,7 @@ For a production build, which includes creating a standalone executable, follow 
 3. **Locate the Binary File:**
    - After successful execution, the built executable will be located in the `dist` directory.
 
-## Installation
+## Installing from Release
 
 To install Foxhole Tool from a release:
 
