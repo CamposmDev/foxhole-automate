@@ -4,16 +4,20 @@ from pynput import mouse, keyboard
 from pynput.mouse import Button
 from pynput.keyboard import Key, KeyCode
 from utils import KEYCODE_W, is_wasd
+import systray
 
 class Foxhole:
 	def __init__(self):
 		self.controller = FoxholeController()
+		self.systray = systray.SysTray()
 
 	def start(self):
 		self.controller.start()
+		self.systray.show()
 
 	def stop(self):
 		self.controller.stop()
+		self.systray.stop()
 
 class FoxholeController:
 	def __init__(self):
@@ -153,8 +157,8 @@ class FoxholeController:
 		print("Listening for input... (Press Ctrl+C to exit)")
 		self.mouse_listener.start()
 		self.keyboard_listener.start()
-		self.mouse_listener.join()
-		self.keyboard_listener.join()
+		# self.mouse_listener.join()
+		# self.keyboard_listener.join()
 
 def build() -> Foxhole:
     return Foxhole()

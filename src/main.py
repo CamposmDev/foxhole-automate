@@ -1,6 +1,5 @@
 #!/bin/python3
 import war
-import sys
 import signal
 from signal import SIGINT
 
@@ -14,9 +13,9 @@ def main():
 
 def terminate(code, frame):
 	global foxhole
+	print('Terminate')
 	if foxhole is not None:
 		foxhole.stop()
-	sys.exit(0)
 
 
 if __name__ == "__main__":
