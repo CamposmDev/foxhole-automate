@@ -6,6 +6,10 @@ build/
 dist/
 *.spec
 
+# Compressed Files
+*.tar.gz
+*.zip
+
 # Byte-compiled / optimized Python files
 __pycache__/
 *.py[cod]
