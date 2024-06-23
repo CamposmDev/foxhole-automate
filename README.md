@@ -1,31 +1,37 @@
-# Foxhole Tool
+![Foxhole Automate](assets/banner.png)
 
-Foxhole Tool is a Python3 project designed to cater to the specific needs of players in the Foxhole game, particularly when multitasking between building and eating.
+# Foxhole Automate
+
+Foxhole Automate is a Python3 project designed to cater to the specific needs of players in the Foxhole game, particularly when multitasking between building and eating.
 
 ## Description
 
-This tool is essential for Foxhole players who find it cumbersome to manage tasks like building and eating simultaneously. It provides a seamless solution tailored specifically for Foxhole gameplay.
+This automation tool is essential for Foxhole players who find it cumbersome to manage tasks like building and eating simultaneously. It provides a seamless solution tailored specifically for Foxhole gameplay.
 
 The source code is open and freely available for anyone to modify according to their preferences. If you wish to customize keybindings or make other adjustments, you are encouraged to clone the repository, make your changes, build the tool, and enjoy a streamlined gaming experience.
 
+## Inspiration
+
+This project was inspired by [FoxholeTool](https://github.com/mmaenz/FoxholeTool).
+
 ## Table of Contents
 
-- [Foxhole Tool](#foxhole-tool)
+- [Foxhole Automate](#foxhole-automate)
   - [Description](#description)
+  - [Inspiration](#inspiration)
   - [Table of Contents](#table-of-contents)
   - [Usage](#usage)
-  - [Building the Program](#building-the-program)
+  - [Installation](#installation)
+  - [Building](#building)
     - [Development Build](#development-build)
     - [Production Build](#production-build)
-  - [Installing from Release](#installing-from-release)
   - [Contributing](#contributing)
   - [Future Plans](#future-plans)
-  - [Inspiration](#inspiration)
   - [License](#license)
 
 ## Usage
 
-Foxhole Tool provides several key bindings to automate common tasks in the game. All function keys are toggled, meaning pressing the key again will stop the corresponding action. Here are the default bindings and their functionalities:
+Foxhole Automate provides several key bindings to automate common tasks in the game. All function keys are toggled, meaning pressing the key again will stop the corresponding action. Here are the default bindings and their functionalities:
 
 - **F2**: Scrooping
   - Pressing F2 starts scrooping.
@@ -50,7 +56,31 @@ Foxhole Tool provides several key bindings to automate common tasks in the game.
   - Pressing F5 again stops the auto fire mechanism.
   - Pressing any of the WASD keys or right-clicking also stops the artillery firing.
 
-## Building the Program
+## Installation
+
+To install Foxhole Automate:
+
+1. **Download the Latest Release:**
+   - Go to the [Releases](https://github.com/CamposmDev/foxhole-automate/releases) page.
+   - Download the latest release package (`zip` or `tar.gz` file) for your operating system.
+
+2. **Extract the Package:**
+   - Extract the downloaded package to a directory of your choice.
+
+3. **Run the Program:**
+   - Open a terminal or command prompt.
+   - Navigate to the extracted directory containing the executable.
+   - Execute the binary file:
+     ```bash
+     ./foxhole-auto   # Replace with the actual name of your binary file
+     ```
+
+   - You may need to make the binary file executable if it's not already:
+     ```bash
+     chmod +x foxhole-auto   # Replace with the actual name of your binary file
+     ```
+
+## Building
 
 ### Development Build
 
@@ -66,7 +96,7 @@ To build the program for development purposes, follow these steps:
 2. **Run the Program:**
    - Navigate to the project directory:
      ```bash
-     cd path/to/foxhole-tool
+     cd path/to/foxhole-auto
      ```
    - Execute the main script:
      ```bash
@@ -92,33 +122,9 @@ For a production build, which includes creating a standalone executable, follow 
 3. **Locate the Binary File:**
    - After successful execution, the built executable will be located in the `dist` directory.
 
-## Installing from Release
-
-To install Foxhole Tool from a release:
-
-1. **Download the Latest Release:**
-   - Go to the [Releases](https://github.com/CamposmDev/foxhole-tool/releases) page.
-   - Download the latest release package (`zip` or `tar.gz` file) for your operating system.
-
-2. **Extract the Package:**
-   - Extract the downloaded package to a directory of your choice.
-
-3. **Run the Program:**
-   - Open a terminal or command prompt.
-   - Navigate to the extracted directory containing the executable.
-   - Execute the binary file:
-     ```bash
-     ./foxhole-tool   # Replace with the actual name of your binary file
-     ```
-
-   - You may need to make the binary file executable if it's not already:
-     ```bash
-     chmod +x foxhole-tool   # Replace with the actual name of your binary file
-     ```
-
 ## Contributing
 
-We welcome contributions to the Foxhole Tool project! To contribute, please follow these steps:
+We welcome contributions to the Foxhole Automate project! To contribute, please follow these steps:
 
 1. **Fork the Repository:**
    - Click the "Fork" button at the top right of the repository page to create a copy of the repository on your GitHub account.
@@ -161,11 +167,7 @@ We welcome contributions to the Foxhole Tool project! To contribute, please foll
 
 ## Future Plans
 
-Future plans for the Foxhole Tool include transitioning it into a system tray application. This enhancement will allow the tool to run discreetly in the background, providing easy access to its functionalities while minimizing interference with gameplay.
-
-## Inspiration
-
-This project was inspired by [FoxholeTool](https://github.com/mmaenz/FoxholeTool).
+Future plans for the Foxhole Automate include transitioning it into a system tray application. This enhancement will allow the tool to run discreetly in the background, providing easy access to its functionalities while minimizing interference with gameplay.
 
 ## License
 
