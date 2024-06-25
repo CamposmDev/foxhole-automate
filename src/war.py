@@ -3,21 +3,33 @@ from threading import Thread
 from pynput import mouse, keyboard
 from pynput.mouse import Button
 from pynput.keyboard import Key, KeyCode
+from pystray import Icon, MenuItem, Menu
+from PIL import Image
+from signal import SIGINT
 from utils import KEYCODE_W, is_wasd
-import systray
+
+_ICO = 'assets/foxhole.ico'
+_NAME = 'Foxhole Auto'
 
 class Foxhole:
 	def __init__(self):
+		self.icon = Icon(_NAME, Image.open(_ICO),
+				   menu=Menu(
+					   MenuItem('Exit', self._stop)
+				   ), title=_NAME)
 		self.controller = FoxholeController()
-		self.systray = systray.SysTray()
 
 	def start(self):
 		self.controller.start()
-		self.systray.show()
+		self.icon.run()
 
 	def stop(self):
 		self.controller.stop()
-		self.systray.stop()
+		self.icon.stop()
+
+	def _stop(self, icon, item):
+		print('Stopping program...')
+		self.stop()
 
 class FoxholeController:
 	def __init__(self):
@@ -147,18 +159,16 @@ class FoxholeController:
 				self.logi_collect_thread = None
 				print("Stop Logi Collect")
 
-	def stop(self):
-		# Stop listening for mouse input
-		self.mouse_listener.stop()
-		# Stop listening for keyboard input
-		self.keyboard_listener.stop()
-
 	def start(self):
-		print("Listening for input... (Press Ctrl+C to exit)")
+		print("Listening for input...")
 		self.mouse_listener.start()
 		self.keyboard_listener.start()
 		# self.mouse_listener.join()
 		# self.keyboard_listener.join()
+		
+	def stop(self):
+		self.mouse_listener.stop()
+		self.keyboard_listener.stop()
 
 def build() -> Foxhole:
     return Foxhole()

@@ -2,6 +2,7 @@
 import war
 import signal
 from signal import SIGINT
+import sys
 
 foxhole: war.Foxhole | None = None
 
@@ -12,10 +13,10 @@ def main():
 	foxhole.start()
 
 def terminate(code, frame):
+	print('Stopping program...')
 	global foxhole
 	if foxhole is not None:
 		foxhole.stop()
-
 
 if __name__ == "__main__":
 	main()
