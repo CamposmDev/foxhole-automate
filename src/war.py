@@ -1,3 +1,5 @@
+import os
+import signal
 import time
 from threading import Thread
 from pynput import mouse, keyboard
@@ -19,6 +21,7 @@ class Foxhole:
                                  MenuItem('Exit', self._stop)
                              ), title=_NAME)
         self.controller = FoxholeController()
+        self.alive = True
 
     def start(self):
         self.controller.start()
@@ -29,9 +32,9 @@ class Foxhole:
         self.controller.stop()
         if Icon.HAS_MENU:
             self.icon.stop()
+        self.alive = False
 
     def _stop(self, icon, item):
-        print('Stopping program...')
         self.stop()
 
 

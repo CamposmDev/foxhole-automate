@@ -42,7 +42,7 @@ build-linux:
 
 build-win:
 	pyinstaller --noconsole --onedir --name=$(PROG_NAME) $(ENTRY_POINT)
-	robocopy "assets" "dist\foxhole-auto\assets" foxhole.ico || exit 0
+	robocopy "assets" "dist\foxhole-auto\src" foxhole.ico || exit 0
 	powershell.exe Compress-Archive -Path dist/$(PROG_NAME) -DestinationPath $(ZIP_FILE)
 
 clean:
