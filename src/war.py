@@ -1,3 +1,5 @@
+import os
+import signal
 import time
 from threading import Thread
 from pynput import mouse, keyboard
@@ -13,6 +15,7 @@ _NAME = 'Foxhole Auto'
 class Foxhole:
     def __init__(self):
         self.controller = FoxholeController()
+        self.alive = True
 
     def start(self):
         self.controller.start()
