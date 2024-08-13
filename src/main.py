@@ -1,25 +1,22 @@
 #!/bin/python3
 import sys
-
 import war
 import signal
-from signal import SIGINT
 import time
+from signal import SIGINT
 
 foxhole: war.Foxhole | None = None
 
-
 def main():
 	global foxhole
+	# add signal handler for SIGINT
 	signal.signal(SIGINT, terminate)
 	foxhole = war.build()
 	foxhole.start()
 	while True:
 		time.sleep(1)
 
-
 def terminate(code, frame):
-	print('Terminating...')
 	global foxhole
 	if foxhole is not None:
 		foxhole.stop()

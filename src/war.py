@@ -3,7 +3,6 @@ from threading import Thread
 from pynput import mouse, keyboard
 from pynput.mouse import Button
 from pynput.keyboard import Key, KeyCode
-from pystray import Icon, MenuItem, Menu
 from PIL import Image
 from utils import KEYCODE_W, is_wasd
 
@@ -13,27 +12,13 @@ _NAME = 'Foxhole Auto'
 
 class Foxhole:
     def __init__(self):
-        if Icon.HAS_MENU:
-            self.icon = Icon(_NAME, Image.open(_ICO),
-                             menu=Menu(
-                                 MenuItem('Exit', self._stop)
-                             ), title=_NAME)
         self.controller = FoxholeController()
 
     def start(self):
         self.controller.start()
-        if Icon.HAS_MENU:
-            self.icon.run()
 
     def stop(self):
         self.controller.stop()
-        if Icon.HAS_MENU:
-            self.icon.stop()
-
-    def _stop(self, icon, item):
-        print('Stopping program...')
-        self.stop()
-
 
 class FoxholeController:
     def __init__(self):
@@ -54,11 +39,17 @@ class FoxholeController:
             on_release=self.on_key_release_handler
         )
 
+    def start(self):
+        print("Listening for input... Press Ctrl+C to exit.")
+        self.mouse_listener.start()
+        self.keyboard_listener.start()
+
+    def stop(self):
+        self.mouse_listener.stop()
+        self.keyboard_listener.stop()
+
     def on_click_handler(self, x: int, y: int, button: Button, pressed: bool):
-        if button == Button.right and pressed and self.scroop:
-            # Stop Scrooping
-            self.toggle_scroop()
-        elif button == Button.right and pressed and self.arty:
+        if button == Button.right and pressed and self.arty:
             # Stop Arty
             self.toggle_arty()
         elif button == Button.right and pressed and self.logi_collect:
@@ -165,17 +156,6 @@ class FoxholeController:
                 self.logi_collect_thread.join()
                 self.logi_collect_thread = None
                 print("Stop Logi Collect")
-
-    def start(self):
-        print("Listening for input...")
-        self.mouse_listener.start()
-        self.keyboard_listener.start()
-
-    def stop(self):
-        self.mouse_listener.stop()
-        self.keyboard_listener.stop()
-        # self.mouse_listener.join()
-        # self.keyboard_listener.join()
 
 
 def build() -> Foxhole:
