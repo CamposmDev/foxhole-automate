@@ -10,6 +10,7 @@ import webbrowser
 
 _ICO = 'foxhole.ico'
 _NAME = 'Foxhole Auto'
+_URL = 'https://github.com/CamposmDev/foxhole-automate'
 
 class Foxhole:
     def __init__(self):
@@ -17,6 +18,7 @@ class Foxhole:
             # initialize tray menu
             self.icon = Icon(_NAME, Image.open(_ICO),
                              menu=Menu(
+                                 MenuItem('About', self.about),
                                  MenuItem('Exit', self.stop)
                              ), title=_NAME)
         self.controller = FoxholeController()
@@ -28,6 +30,9 @@ class Foxhole:
     def stop(self):
         self.controller.stop()
         self.icon.stop()
+
+    def about(self):
+        webbrowser.open(_URL, new=0, autoraise=True)
 
 
 class FoxholeController:
