@@ -15,7 +15,6 @@ _NAME = 'Foxhole Auto'
 class Foxhole:
     def __init__(self):
         self.controller = FoxholeController()
-        self.alive = True
 
     def start(self):
         self.controller.start()

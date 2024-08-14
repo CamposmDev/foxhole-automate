@@ -13,14 +13,14 @@ def main():
 	signal.signal(SIGINT, terminate)
 	foxhole = war.build()
 	foxhole.start()
-	while foxhole.alive:
+	while True:
 		time.sleep(1)
-	print('Bye Bye')
 
 def terminate(code, frame):
 	global foxhole
 	if foxhole is not None:
 		foxhole.stop()
+	sys.exit(0)
 
 
 if __name__ == "__main__":
