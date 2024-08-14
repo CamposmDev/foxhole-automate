@@ -5,20 +5,30 @@ from pynput.mouse import Button
 from pynput.keyboard import Key, KeyCode
 from PIL import Image
 from utils import KEYCODE_W, is_wasd
+from pystray import Icon, MenuItem, Menu
+import webbrowser
 
 _ICO = 'foxhole.ico'
 _NAME = 'Foxhole Auto'
 
-
 class Foxhole:
     def __init__(self):
+        if Icon.HAS_MENU:
+            # initialize tray menu
+            self.icon = Icon(_NAME, Image.open(_ICO),
+                             menu=Menu(
+                                 MenuItem('Exit', self.stop)
+                             ), title=_NAME)
         self.controller = FoxholeController()
 
     def start(self):
         self.controller.start()
+        self.icon.run()
 
     def stop(self):
         self.controller.stop()
+        self.icon.stop()
+
 
 class FoxholeController:
     def __init__(self):
@@ -40,7 +50,7 @@ class FoxholeController:
         )
 
     def start(self):
-        print("Listening for input... Press Ctrl+C to exit.")
+        print("Listening for input...")
         self.mouse_listener.start()
         self.keyboard_listener.start()
 
