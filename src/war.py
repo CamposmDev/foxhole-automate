@@ -1,4 +1,5 @@
 import time
+import sys
 from threading import Thread
 from pynput import mouse, keyboard
 from pynput.mouse import Button
@@ -15,12 +16,16 @@ _URL = 'https://github.com/CamposmDev/foxhole-automate'
 class Foxhole:
     def __init__(self):
         if Icon.HAS_MENU:
-            # initialize tray menu
+            print('Initializing system tray menu')
+            # initialize systray menu
             self.icon = Icon(_NAME, Image.open(_ICO),
                              menu=Menu(
                                  MenuItem('About', self.about),
                                  MenuItem('Exit', self.stop)
                              ), title=_NAME)
+        else:
+            print("Your PC doesn't support me :(")
+            sys.exit(0)
         self.controller = FoxholeController()
 
     def start(self):
