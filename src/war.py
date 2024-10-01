@@ -5,7 +5,7 @@ from pynput import mouse, keyboard
 from pynput.mouse import Button
 from pynput.keyboard import Key, KeyCode
 from PIL import Image
-from utils import KEYCODE_W, is_wasd
+from utils import KEYCODE_S, is_wasd
 from pystray import Icon, MenuItem, Menu
 import webbrowser
 
@@ -24,23 +24,23 @@ class Foxhole:
                                  MenuItem('Exit', self.stop)
                              ), title=_NAME)
         else:
-            print("Your PC doesn't support me :(")
+            print("Your desktop doesn't support me :(")
             sys.exit(0)
-        self.controller = FoxholeController()
+        self.task_man = FoxholeTaskManager()
 
     def start(self):
-        self.controller.start()
+        self.task_man.start()
         self.icon.run()
 
     def stop(self):
-        self.controller.stop()
+        self.task_man.stop()
         self.icon.stop()
 
     def about(self):
         webbrowser.open(_URL, new=0, autoraise=True)
 
 
-class FoxholeController:
+class FoxholeTaskManager:
     def __init__(self):
         self.scroop = False
         self.holding_w = False
@@ -77,6 +77,9 @@ class FoxholeController:
             self.toggle_logi_collect()
 
     def on_key_press_handler(self, key: (Key | KeyCode | None)):
+        '''
+        Event handler for user key press input
+        '''
         if key == Key.f2:
             # Toggle Scrooping
             self.toggle_scroop()
@@ -100,7 +103,10 @@ class FoxholeController:
             self.toggle_arty()
 
     def on_key_release_handler(self, key: (Key | KeyCode | None)):
-        if key == KEYCODE_W and self.holding_w:
+        '''
+        Event handler for user key release input
+        '''
+        if key == KEYCODE_S and self.holding_w:
             # Stop Logistics (Move Forward)
             self.toggle_move_forward()
 
@@ -132,15 +138,16 @@ class FoxholeController:
             self.keyboard.release('w')
 
     def toggle_arty(self):
+        DELAY = 0.9
         def start_arty():
             while self.arty:
                 self.keyboard.press('r')
-                time.sleep(0.1)
+                time.sleep(DELAY)
                 self.keyboard.release('r')
                 self.mouse.click(Button.left)
-                time.sleep(0.1)
+                time.sleep(DELAY)
                 self.mouse.release(Button.left)
-                time.sleep(1)
+                time.sleep(DELAY)
 
         self.arty = not self.arty
         if self.arty:
@@ -156,14 +163,15 @@ class FoxholeController:
 
     def toggle_logi_collect(self):
         def start_logi_collect():
+            DELAY = 0.09
             while self.logi_collect:
                 self.keyboard.press(Key.shift)
-                time.sleep(0.1)
+                time.sleep(DELAY)
                 self.mouse.click(Button.left)
-                time.sleep(0.1)
+                time.sleep(DELAY)
                 self.mouse.release(Button.left)
                 self.keyboard.release(Key.shift)
-                time.sleep(1)
+                time.sleep(DELAY)
 
         self.logi_collect = not self.logi_collect
         if self.logi_collect:
