@@ -49,6 +49,7 @@ class FoxholeTaskManager:
         self.mouse = mouse.Controller()
         self.keyboard = keyboard.Controller()
         self.spam_lmb_thread = None
+        self.w_thread = None
         self.arty_thread = None
         self.logi_collect_thread = None
         self.mouse_listener = mouse.Listener(
@@ -84,7 +85,7 @@ class FoxholeTaskManager:
             # Toggle Scrooping
             self.toggle_scroop()
         elif key == Key.f3:
-            # Toggle Logistics (Move Forward)
+            # Toggle W-Movement
             self.toggle_move_forward()
         elif key == Key.f4:
             # Toggle Logistics (Collect Materials)
@@ -112,9 +113,11 @@ class FoxholeTaskManager:
 
     def toggle_scroop(self):
         def start_scroop():
+            DELAY = 1
             while self.scroop:
-                self.mouse.click(mouse.Button.left)
-                time.sleep(0.4)
+                self.mouse.press(Button.left)
+                time.sleep(DELAY)
+            self.mouse.release(Button.left)
 
         self.scroop = not self.scroop
         if self.scroop:
@@ -124,16 +127,25 @@ class FoxholeTaskManager:
         else:
             # wait for spam_lmb thread to finish
             if self.spam_lmb_thread is not None:
-                print("Stopped Scrooping")
                 self.spam_lmb_thread.join()
                 self.spam_lmb_thread = None
+                print("Stopped Scrooping")
 
     def toggle_move_forward(self):
+        def start_w():
+                DELAY = 1
+                while self.holding_w:
+                    self.keyboard.press('w')
+                    time.sleep(DELAY)
+                self.keyboard.release('w')
         self.holding_w = not self.holding_w
         if self.holding_w:
             print("Start Moving Forward")
-            self.keyboard.press('w')
+            self.w_thread = Thread(target=start_w)
+            self.w_thread.start()
         else:
+            self.w_thread.join()
+            self.w_thread = None
             print("Stopped Moving Forward")
             self.keyboard.release('w')
 
